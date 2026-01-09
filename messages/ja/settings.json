@@ -377,6 +377,7 @@
     "notifications": "通知",
     "prices": "価格表",
     "providers": "供給元",
+    "modelRedirects": "グローバルモデルリダイレクト",
     "sensitiveWords": "フィルター",
     "requestFilters": "リクエスト"
   },
@@ -2122,5 +2123,32 @@
   "mcpPassthroughUrlLabel": "MCP パススルー URL",
   "mcpPassthroughUrlPlaceholder": "https://api.minimaxi.com",
   "mcpPassthroughUrlDesc": "MCP サービスベース URL。空のままにすると、プロバイダ URL から自動的に抽出されます",
-  "mcpPassthroughUrlAuto": "自動抽出: {url}"
+  "mcpPassthroughUrlAuto": "自動抽出: {url}",
+  "modelRedirects": {
+    "title": "グローバルモデルリダイレクト",
+    "description": "システム全体のモデルリダイレクトルールを設定します（プロバイダールールが優先）。",
+    "section": {
+      "title": "リダイレクトルール",
+      "description": "プロバイダールールが一致しない場合のフォールバックとして全リクエストに適用されます。"
+    },
+    "form": {
+      "save": "保存",
+      "saved": "保存しました",
+      "saveFailed": "保存に失敗しました"
+    },
+    "editor": {
+      "currentRules": "現在のルール ({count})",
+      "addNewRule": "新しいルールを追加",
+      "sourceModel": "ユーザー要求モデル",
+      "targetModel": "実際に転送するモデル",
+      "sourcePlaceholder": "例: claude-sonnet-4-5-20250929",
+      "targetPlaceholder": "例: glm-4.6",
+      "add": "追加",
+      "sourceEmpty": "ソースモデル名は空にできません",
+      "targetEmpty": "ターゲットモデル名は空にできません",
+      "alreadyExists": "モデル \"{model}\" には既にリダイレクトルールがあります",
+      "description": "システム全体のフォールバック：プロバイダールールが未命中の場合、リクエスト内のモデル名を自動で書き換えます。",
+      "emptyState": "リダイレクトルールはまだありません。追加後、システムが自動でモデル名を書き換えます。"
+    }
+  }
 }

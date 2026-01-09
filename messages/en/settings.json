@@ -386,6 +386,7 @@
     "notifications": "Notifications",
     "prices": "Pricing",
     "providers": "Providers",
+    "modelRedirects": "Global Redirects",
     "sensitiveWords": "Filters",
     "requestFilters": "Requests"
   },
@@ -2172,5 +2173,32 @@
   "mcpPassthroughUrlLabel": "MCP Passthrough URL",
   "mcpPassthroughUrlPlaceholder": "https://api.minimaxi.com",
   "mcpPassthroughUrlDesc": "MCP service base URL. Leave empty to auto-extract from provider URL",
-  "mcpPassthroughUrlAuto": "Auto-extracted: {url}"
+  "mcpPassthroughUrlAuto": "Auto-extracted: {url}",
+  "modelRedirects": {
+    "title": "Global Model Redirects",
+    "description": "Configure system-wide model redirect rules (provider-level rules take precedence).",
+    "section": {
+      "title": "Redirect Rules",
+      "description": "Applies to all requests as a fallback when no provider-level rule matches."
+    },
+    "form": {
+      "save": "Save",
+      "saved": "Saved",
+      "saveFailed": "Save failed"
+    },
+    "editor": {
+      "currentRules": "Current Rules ({count})",
+      "addNewRule": "Add New Rule",
+      "sourceModel": "User Requested Model",
+      "targetModel": "Actual Forwarded Model",
+      "sourcePlaceholder": "e.g. claude-sonnet-4-5-20250929",
+      "targetPlaceholder": "e.g. glm-4.6",
+      "add": "Add",
+      "sourceEmpty": "Source model name cannot be empty",
+      "targetEmpty": "Target model name cannot be empty",
+      "alreadyExists": "Model \"{model}\" already has a redirect rule",
+      "description": "System-wide fallback: when no provider-level redirect matches, the system will rewrite model names in requests.",
+      "emptyState": "No redirect rules yet. After adding rules, the system will automatically rewrite model names in requests."
+    }
+  }
 }

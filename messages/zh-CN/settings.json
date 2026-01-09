@@ -3,6 +3,7 @@
     "config": "配置",
     "prices": "价格表",
     "providers": "供应商",
+    "modelRedirects": "全局模型重定向",
     "sensitiveWords": "敏感词",
     "requestFilters": "请求过滤",
     "clientVersions": "客户端升级提醒",
@@ -2161,5 +2162,32 @@
   "mcpPassthroughUrlLabel": "MCP 透传 URL",
   "mcpPassthroughUrlPlaceholder": "https://api.minimaxi.com",
   "mcpPassthroughUrlDesc": "MCP 服务的基础 URL。留空则自动从提供商 URL 提取基础域名",
-  "mcpPassthroughUrlAuto": "自动提取: {url}"
+  "mcpPassthroughUrlAuto": "自动提取: {url}",
+  "modelRedirects": {
+    "title": "全局模型重定向",
+    "description": "配置系统级模型重定向规则（供应商级规则优先，其次才应用全局规则）。",
+    "section": {
+      "title": "重定向规则",
+      "description": "对所有请求生效的兜底模型重定向配置。"
+    },
+    "form": {
+      "save": "保存",
+      "saved": "已保存",
+      "saveFailed": "保存失败"
+    },
+    "editor": {
+      "currentRules": "当前规则 ({count})",
+      "addNewRule": "添加新规则",
+      "sourceModel": "用户请求的模型",
+      "targetModel": "实际转发的模型",
+      "sourcePlaceholder": "例如: claude-sonnet-4-5-20250929",
+      "targetPlaceholder": "例如: glm-4.6",
+      "add": "添加",
+      "sourceEmpty": "源模型名称不能为空",
+      "targetEmpty": "目标模型名称不能为空",
+      "alreadyExists": "模型 \"{model}\" 已存在重定向规则",
+      "description": "系统级兜底：当供应商级模型重定向未命中时，自动重写请求中的模型名称。",
+      "emptyState": "暂无重定向规则。添加规则后，系统将自动重写请求中的模型名称。"
+    }
+  }
 }

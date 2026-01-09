@@ -718,6 +718,8 @@ export const UpdateSystemSettingsSchema = z.object({
   billingModelSource: z
     .enum(["original", "redirected"], { message: "不支持的计费模型来源" })
     .optional(),
+  // 全局模型重定向（可选）
+  globalModelRedirects: z.record(z.string(), z.string()).nullable().optional(),
   // 日志清理配置（可选）
   enableAutoCleanup: z.boolean().optional(),
   cleanupRetentionDays: z.coerce

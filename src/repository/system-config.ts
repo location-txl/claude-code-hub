@@ -140,6 +140,7 @@ function createFallbackSettings(): SystemSettings {
     allowGlobalUsageView: false,
     currencyDisplay: "USD",
     billingModelSource: "original",
+    globalModelRedirects: null,
     enableAutoCleanup: false,
     cleanupRetentionDays: 30,
     cleanupSchedule: "0 2 * * *",
@@ -173,6 +174,7 @@ export async function getSystemSettings(): Promise<SystemSettings> {
       allowGlobalUsageView: systemSettings.allowGlobalUsageView,
       currencyDisplay: systemSettings.currencyDisplay,
       billingModelSource: systemSettings.billingModelSource,
+      globalModelRedirects: systemSettings.globalModelRedirects,
       enableAutoCleanup: systemSettings.enableAutoCleanup,
       cleanupRetentionDays: systemSettings.cleanupRetentionDays,
       cleanupSchedule: systemSettings.cleanupSchedule,
@@ -280,6 +282,11 @@ export async function updateSystemSettings(
       updates.billingModelSource = payload.billingModelSource;
     }
 
+    // 全局模型重定向配置字段（如果提供）
+    if (payload.globalModelRedirects !== undefined) {
+      updates.globalModelRedirects = payload.globalModelRedirects;
+    }
+
     // 日志清理配置字段（如果提供）
     if (payload.enableAutoCleanup !== undefined) {
       updates.enableAutoCleanup = payload.enableAutoCleanup;
@@ -341,6 +348,7 @@ export async function updateSystemSettings(
         allowGlobalUsageView: systemSettings.allowGlobalUsageView,
         currencyDisplay: systemSettings.currencyDisplay,
         billingModelSource: systemSettings.billingModelSource,
+        globalModelRedirects: systemSettings.globalModelRedirects,
         enableAutoCleanup: systemSettings.enableAutoCleanup,
         cleanupRetentionDays: systemSettings.cleanupRetentionDays,
         cleanupSchedule: systemSettings.cleanupSchedule,

@@ -377,6 +377,7 @@
     "notifications": "Уведомления",
     "prices": "Цены",
     "providers": "Поставщики",
+    "modelRedirects": "Глобальные редиректы",
     "sensitiveWords": "Фильтры",
     "requestFilters": "Запросы"
   },
@@ -2122,5 +2123,32 @@
   "mcpPassthroughUrlLabel": "URL сквозной передачи MCP",
   "mcpPassthroughUrlPlaceholder": "https://api.minimaxi.com",
   "mcpPassthroughUrlDesc": "Базовый URL сервиса MCP. Оставьте пустым для автоматического извлечения из URL провайдера",
-  "mcpPassthroughUrlAuto": "Автоматически извлечено: {url}"
+  "mcpPassthroughUrlAuto": "Автоматически извлечено: {url}",
+  "modelRedirects": {
+    "title": "Глобальный редирект моделей",
+    "description": "Настройка глобальных правил редиректа моделей (правила провайдера имеют приоритет).",
+    "section": {
+      "title": "Правила редиректа",
+      "description": "Применяется ко всем запросам как fallback, если правило провайдера не совпало."
+    },
+    "form": {
+      "save": "Сохранить",
+      "saved": "Сохранено",
+      "saveFailed": "Не удалось сохранить"
+    },
+    "editor": {
+      "currentRules": "Текущие правила ({count})",
+      "addNewRule": "Добавить правило",
+      "sourceModel": "Запрошенная пользователем модель",
+      "targetModel": "Фактическая модель для запроса",
+      "sourcePlaceholder": "например: claude-sonnet-4-5-20250929",
+      "targetPlaceholder": "например: glm-4.6",
+      "add": "Добавить",
+      "sourceEmpty": "Имя исходной модели не может быть пустым",
+      "targetEmpty": "Имя целевой модели не может быть пустым",
+      "alreadyExists": "Для модели \"{model}\" уже есть правило редиректа",
+      "description": "Глобальный fallback: если не сработало правило провайдера, система автоматически перепишет имя модели в запросе.",
+      "emptyState": "Правил редиректа пока нет. После добавления система автоматически перепишет имена моделей в запросах."
+    }
+  }
 }

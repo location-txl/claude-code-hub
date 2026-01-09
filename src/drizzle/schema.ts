@@ -468,6 +468,12 @@ export const systemSettings = pgTable('system_settings', {
   // 计费模型来源配置: 'original' (重定向前) | 'redirected' (重定向后)
   billingModelSource: varchar('billing_model_source', { length: 20 }).notNull().default('original'),
 
+  // 全局模型重定向：系统级兜底（优先级低于供应商级 modelRedirects）
+  // 将请求中的模型名称重写为另一个模型名称，用于成本优化或第三方模型接入
+  globalModelRedirects: jsonb('global_model_redirects')
+    .$type<Record<string, string> | null>()
+    .default(null),
+
   // 日志清理配置
   enableAutoCleanup: boolean('enable_auto_cleanup').default(false),
   cleanupRetentionDays: integer('cleanup_retention_days').default(30),

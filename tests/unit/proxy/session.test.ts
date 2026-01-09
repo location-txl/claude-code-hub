@@ -24,6 +24,7 @@ function makeSystemSettings(
     allowGlobalUsageView: false,
     currencyDisplay: "USD",
     billingModelSource,
+    globalModelRedirects: null,
     enableAutoCleanup: false,
     cleanupRetentionDays: 30,
     cleanupSchedule: "0 2 * * *",

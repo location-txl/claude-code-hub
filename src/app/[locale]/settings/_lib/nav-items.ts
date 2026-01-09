@@ -12,6 +12,7 @@ export const SETTINGS_NAV_ITEMS: SettingsNavItem[] = [
   { href: "/settings/config", labelKey: "nav.config", label: "配置" },
   { href: "/settings/prices", labelKey: "nav.prices", label: "价格表" },
   { href: "/settings/providers", labelKey: "nav.providers", label: "供应商" },
+  { href: "/settings/model-redirects", labelKey: "nav.modelRedirects", label: "全局模型重定向" },
   {
     href: "/settings/sensitive-words",
     labelKey: "nav.sensitiveWords",

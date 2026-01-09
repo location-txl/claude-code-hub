@@ -22,6 +22,9 @@ export interface SystemSettings {
   // 计费模型来源配置
   billingModelSource: BillingModelSource;
 
+  // 全局模型重定向（系统级兜底）
+  globalModelRedirects: Record<string, string> | null;
+
   // 日志清理配置
   enableAutoCleanup?: boolean;
   cleanupRetentionDays?: number;
@@ -62,6 +65,9 @@ export interface UpdateSystemSettingsInput {
 
   // 计费模型来源配置（可选）
   billingModelSource?: BillingModelSource;
+
+  // 全局模型重定向（可选）
+  globalModelRedirects?: Record<string, string> | null;
 
   // 日志清理配置（可选）
   enableAutoCleanup?: boolean;

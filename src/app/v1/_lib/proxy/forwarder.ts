@@ -960,8 +960,13 @@ export class ProxyForwarder {
       session.setContext1mApplied(context1mApplied);
     }
 
-    // 应用模型重定向（如果配置了）
-    const wasRedirected = ModelRedirector.apply(session, provider);
+    // 应用模型重定向（供应商级优先，全局兜底）
+    const systemSettings = await getCachedSystemSettings();
+    const wasRedirected = ModelRedirector.apply(
+      session,
+      provider,
+      systemSettings.globalModelRedirects
+    );
     if (wasRedirected) {
       logger.debug("ProxyForwarder: Model redirected", {
         providerId: provider.id,

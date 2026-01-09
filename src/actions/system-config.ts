@@ -30,6 +30,7 @@ export async function saveSystemSettings(formData: {
   allowGlobalUsageView?: boolean;
   currencyDisplay?: string;
   billingModelSource?: string;
+  globalModelRedirects?: Record<string, string> | null;
   enableAutoCleanup?: boolean;
   cleanupRetentionDays?: number;
   cleanupSchedule?: string;
@@ -54,6 +55,7 @@ export async function saveSystemSettings(formData: {
       allowGlobalUsageView: validated.allowGlobalUsageView,
       currencyDisplay: validated.currencyDisplay,
       billingModelSource: validated.billingModelSource,
+      globalModelRedirects: validated.globalModelRedirects,
       enableAutoCleanup: validated.enableAutoCleanup,
       cleanupRetentionDays: validated.cleanupRetentionDays,
       cleanupSchedule: validated.cleanupSchedule,

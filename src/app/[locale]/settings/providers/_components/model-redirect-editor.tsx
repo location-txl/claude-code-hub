@@ -11,14 +11,16 @@ interface ModelRedirectEditorProps {
   value: Record<string, string>;
   onChange: (value: Record<string, string>) => void;
   disabled?: boolean;
+  translationNamespace?: string;
 }
 
 export function ModelRedirectEditor({
   value,
   onChange,
   disabled = false,
+  translationNamespace = "settings.providers.form.modelRedirect",
 }: ModelRedirectEditorProps) {
-  const t = useTranslations("settings.providers.form.modelRedirect");
+  const t = useTranslations(translationNamespace);
   const [newSource, setNewSource] = useState("");
   const [newTarget, setNewTarget] = useState("");
   const [error, setError] = useState<string | null>(null);

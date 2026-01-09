@@ -1,4 +1,5 @@
 import { getCircuitState, isCircuitOpen } from "@/lib/circuit-breaker";
+import { getCachedSystemSettings } from "@/lib/config";
 import { PROVIDER_GROUP } from "@/lib/constants/provider.constants";
 import { logger } from "@/lib/logger";
 import { RateLimitService } from "@/lib/rate-limit";
@@ -8,6 +9,7 @@ import { getSystemSettings } from "@/repository/system-config";
 import type { ProviderChainItem } from "@/types/message";
 import type { Provider } from "@/types/provider";
 import type { ClientFormat } from "./format-mapper";
+import { ModelRedirector } from "./model-redirector";
 import { ProxyResponses } from "./responses";
 import type { ProxySession } from "./session";
 
@@ -649,6 +651,9 @@ export class ProxyProviderResolver {
     // 如果没有 session，回退到 findAllProviders（内部已使用缓存）
     const allProviders = session ? await session.getProvidersSnapshot() : await findAllProviders();
     const requestedModel = session?.getCurrentModel() || "";
+    const globalModelRedirects = requestedModel
+      ? (await getCachedSystemSettings()).globalModelRedirects
+      : null;
 
     // === Step 1: 分组预过滤（静默，用户只能看到自己分组内的供应商）===
     const effectiveGroupPick = getEffectiveProviderGroup(session);
@@ -755,7 +760,12 @@ export class ProxyProviderResolver {
         return provider.providerType === "claude";
       }
 
-      return providerSupportsModel(provider, requestedModel);
+      const matchModel = ModelRedirector.getModelForProviderSelection(
+        requestedModel,
+        provider,
+        globalModelRedirects
+      );
+      return providerSupportsModel(provider, matchModel);
     });
 
     context.enabledProviders = enabledProviders.length;
@@ -786,9 +796,19 @@ export class ProxyProviderResolver {
         ) {
           reason = "format_type_mismatch";
           details = `原始格式 ${session.originalFormat} 与供应商类型 ${p.providerType} 不兼容`;
-        } else if (requestedModel && !providerSupportsModel(p, requestedModel)) {
-          reason = "model_not_allowed";
-          details = `不支持模型 ${requestedModel}`;
+        } else if (requestedModel) {
+          const matchModel = ModelRedirector.getModelForProviderSelection(
+            requestedModel,
+            p,
+            globalModelRedirects
+          );
+          if (!providerSupportsModel(p, matchModel)) {
+            reason = "model_not_allowed";
+            details =
+              matchModel === requestedModel
+                ? `不支持模型 ${requestedModel}`
+                : `不支持模型 ${requestedModel}（全局重定向后: ${matchModel}）`;
+          }
         }
 
         context.filteredProviders?.push({
